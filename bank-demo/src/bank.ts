@@ -104,6 +104,18 @@ export class Bank implements BankType {
         const account = this.findAccount(accountNumber);
         if (!account) throw new Error('Account number not found');
         if (account.balance < amount) throw new Error('Insufficient funds for the account');
-        account.balance -= amount; // Deduct balance
+        account.balance -= amount;
+    }
+
+    /**
+     * Checks the balance of a bank account.
+     * @param accountNumber - The ID of the bank account.
+     * @returns The balance of the bank account at that point.
+     * @throws Error if the account number is invalid.
+     */
+    public checkBalance(accountNumber: number): number {
+        const account = this.findAccount(accountNumber);
+        if (!account) throw new Error('Account number not found');
+        return account.balance;
     }
 }

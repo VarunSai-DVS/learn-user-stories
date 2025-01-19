@@ -115,3 +115,23 @@ try {
 } catch (e) {
     console.log('Scenario 11 passed');
 }
+
+try {
+    // checking the balance for a valid account
+    let balance : number = bank.checkBalance(1234567890);
+    if (balance === 3000) {
+        console.log('Scenario 12 passed');
+    } else {
+        console.log('Scenario 12 failed');
+    }
+} catch (e) {
+    console.log('Scenario 12 failed');
+}
+
+try {
+    // checking the balance for an invalid account.
+    let balance : number = bank.checkBalance(1234567895);
+    console.log('Scenario 13 failed');
+} catch (e) {
+    console.log('Scenario 13 passed');
+}
