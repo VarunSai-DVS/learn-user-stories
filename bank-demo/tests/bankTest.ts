@@ -79,3 +79,39 @@ try {
 } catch (e) {
     console.log('Scenario 7 passed');
 }
+
+// Testing the Withdraw functionality.
+try {
+    // Added some money above.
+    bank.withdrawMoney(1234567890, 500);
+    const updatedAccount = accounts.find(acc => acc.id === 1234567890);
+    if (updatedAccount?.balance === 3000) {
+        console.log('Scenario 8 passed');
+    } else {
+        console.log('Scenario 8 failed');
+    }
+} catch (e) {
+    console.log('Scenario 8 failed');
+}
+
+// Scenario 9: Withdraw fails due to invalid account number
+try {
+    bank.withdrawMoney(1234567899, 200);
+    console.log('Scenario 9 failed');
+} catch (e) {
+    console.log('Scenario 9 passed');
+}
+
+// Scenario 10: Withdraw fails due to invalid amount of money
+try {
+    bank.withdrawMoney(1234567890, -500);
+    console.log('Scenario 10 failed');
+} catch (e) {
+    console.log('Scenario 10 passed');
+}
+try {
+    bank.withdrawMoney(1234567891, 10000);
+    console.log('Scenario 11 failed');
+} catch (e) {
+    console.log('Scenario 11 passed');
+}
