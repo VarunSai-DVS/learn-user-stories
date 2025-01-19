@@ -2,8 +2,8 @@ import { Bank } from '../src/bank';
 
 // setup
 
-const accounts = [{ id: 1234567890, balance: 3448 },
-    { id: 1234567891, balance: 2424 }];
+const accounts = [{ id: 1234567890, balance: 3000 },
+    { id: 1234567891, balance: 5000 }];
 
 const usernames = ['user1', 'user2'];
 const bank = new Bank(accounts, usernames);
@@ -43,4 +43,39 @@ try {
 }
 catch(e) {
     console.log('Scenario 3 passed');
+}
+
+// Testing the Deposit functionality.
+try {
+    bank.depositMoney(1234567890, 500);
+    const updatedAccount = accounts.find(acc => acc.id === 1234567890);
+    if (updatedAccount?.balance === 3000 + 500) {
+        console.log('Scenario 4 passed');
+    } else {
+        console.log('Scenario 4 failed');
+    }
+} catch (e) {
+    console.log('Scenario 4 failed');
+}
+
+// Scenario 5: Deposit fails due to invalid account number
+try {
+    bank.depositMoney(1234567899, 200);
+    console.log('Scenario 5 failed');
+} catch (e) {
+    console.log('Scenario 5 passed');
+}
+
+// Scenario 6: Deposit fails due to invalid amount of money
+try {
+    bank.depositMoney(1234567890, -500);
+    console.log('Scenario 6 failed');
+} catch (e) {
+    console.log('Scenario 6 passed');
+}
+try {
+    bank.depositMoney(1234567891, 0);
+    console.log('Scenario 7 failed');
+} catch (e) {
+    console.log('Scenario 7 passed');
 }

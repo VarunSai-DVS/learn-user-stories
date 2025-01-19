@@ -79,4 +79,17 @@ export class Bank implements BankType {
         this.accounts.push(newAccount);
         return newAccount;
     }
+
+    /**
+     * Deposits  certain amount of money into a bank account.
+     * @param accountNumber - The ID of the bank account.
+     * @param amount - The amount of money to be deposited.
+     * @throws Error if the account number is invalid or if the deposit amount is invalid.
+     */
+    depositMoney(accountNumber: number, amount: number): void {
+        if (amount <= 0) throw new Error('Deposit amount is invalid');
+        const account = this.findAccount(accountNumber);
+        if (!account) throw new Error('Account number not found');
+        account.balance += amount;
+    }
 }
